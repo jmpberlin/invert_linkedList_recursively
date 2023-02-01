@@ -7,28 +7,17 @@ type linkedList struct {
 }
 type node struct {
 	next  *node
-	isEnd bool
 	value string
 }
 
+func newLinkedList() *linkedList {
+	return &linkedList{next: nil}
+}
 func (l *linkedList) insert(v string) {
 	nodeToBeInserted := &node{value: v, next: l.next}
 	l.next = nodeToBeInserted
 }
-func newLinkedList() *linkedList {
-	return &linkedList{next: nil}
-}
 
-func (l *linkedList) printList() {
-	node := l.next
-	for {
-		if node == nil {
-			break
-		}
-		fmt.Println(node)
-		node = node.next
-	}
-}
 func (l *linkedList) invert() {
 	l.next = invertLinkedListRecursively(nil, l.next)
 }
@@ -43,6 +32,17 @@ func invertLinkedListRecursively(currentNode, nextNode *node) *node {
 	}
 	nextNode.next = currentNode
 	return x
+}
+
+func (l *linkedList) printList() {
+	node := l.next
+	for {
+		if node == nil {
+			break
+		}
+		fmt.Println(node)
+		node = node.next
+	}
 }
 
 func main() {
